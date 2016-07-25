@@ -39,6 +39,7 @@
     dest=/etc/initscript
     regexp="^eval "
     line="eval exec "$4""
+  create: /etc/initscript
   ignore_errors: yes
   tags: [ulimit]
 
