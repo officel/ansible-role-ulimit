@@ -49,5 +49,6 @@
     regexp="^ulimit "
     line="ulimit -n {{ ulimit_num | default('65536') }}"
     create=/etc/sysconfig/init
+  ignore_errors: yes
   tags: [ulimit]
 
