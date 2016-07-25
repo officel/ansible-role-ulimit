@@ -14,7 +14,7 @@ none.
 Role Variables
 --------------
 
-none.
+ulimit_num: 65536
 
 Dependencies
 ------------
@@ -28,6 +28,12 @@ Example Playbook
       become: true
       roles:
          - officel.ulimit
+
+      or
+
+         -{role: officel.ulimit,
+           ulimit_num: 65536
+          }
 
 License
 -------

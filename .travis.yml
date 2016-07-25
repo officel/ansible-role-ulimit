@@ -28,6 +28,9 @@ script:
   # Install dependencies.
   # - 'sudo docker exec "$(cat ${container_id})" ansible-galaxy install -r /etc/ansible/roles/role_test/tests/requirements.yml'
 
+  # pre check
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ulimit -n'
+
   # Ansible syntax check.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_test/tests/test.yml --syntax-check'
 

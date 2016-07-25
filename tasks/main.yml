@@ -1,3 +1,50 @@
 ---
 # tasks file for ansible-role-ulimit
 
+- name: change comment /etc/security/limits.conf
+  lineinfile:
+    dest=/etc/security/limits.conf
+    regexp="^# Ansible changes."
+    line="# Ansible changes."
+  tags: [ulimit]
+
+- name: change soft /etc/security/limits.conf
+  lineinfile:
+    dest=/etc/security/limits.conf
+    regexp="^\* soft nofile"
+    line="* soft nofile {{ ulimit_num | default('65536') }}"
+  tags: [ulimit]
+
+- name: change hard /etc/security/limits.conf
+  lineinfile:
+    dest=/etc/security/limits.conf
+    regexp="^\* hard nofile"
+    line="* hard nofile {{ ulimit_num | default('65536') }}"
+  tags: [ulimit]
+
+- name: change /etc/initscript (ulimit)
+  lineinfile:
+    dest=/etc/initscript
+    regexp="^ulimit "
+    line="ulimit -n {{ ulimit_num | default('65536') }}"
+    owner=root
+    group=root
+    mode=0644
+    backup=yes
+    create=yes
+  tags: [ulimit]
+
+- name: change /etc/initscript (eval)
+  lineinfile:
+    dest=/etc/initscript
+    regexp="^eval "
+    line="eval exec "$4""
+  tags: [ulimit]
+
+- name: edit /etc/sysconfig/init
+  lineinfile:
+    dest=/etc/sysconfig/init
+    regexp="^ulimit "
+    line="ulimit -n {{ ulimit_num | default('65536') }}"
+  tags: [ulimit]
+
