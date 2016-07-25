@@ -48,5 +48,6 @@
     dest=/etc/sysconfig/init
     regexp="^ulimit "
     line="ulimit -n {{ ulimit_num | default('65536') }}"
+    create=/etc/sysconfig/init
   tags: [ulimit]
 

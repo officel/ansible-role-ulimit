@@ -1,4 +1,4 @@
-Ansible Role: selinx
+Ansible Role: ulimit
 =========
 
 [![Build Status](https://travis-ci.org/officel/ansible-role-ulimit.svg?branch=master)](https://travis-ci.org/officel/ansible-role-ulimit)
